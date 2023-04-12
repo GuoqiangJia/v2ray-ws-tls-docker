@@ -1,0 +1,17 @@
+version: '3'
+services:
+  v2ray-ws-tls-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: v2ray-ws-tls-latest
+    container_name: v2ray-ws-tls-container
+    restart: always
+    ports:
+      - "11404:11404"
+    volumes:
+      - ./config/nginx.tls.conf:/etc/nginx/conf.d/nginx.tls.conf
+      - ./config/config.json:/use/local/etc/v2ray/config.json
+    environment:
+      - email=your_mail_address
+      - domain=your_domain
