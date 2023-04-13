@@ -4,17 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - YOUR_EMAIL=your_mail_address
+        - YOUR_DOMAIN=your_domain
+        - YOUR_TLS_PORT=your_port
+        - YOUR_FAKE_HOST=your_fake_host
+        - YOUR_UUID=0e1bb9e9-c527-4467-b70d-ce8bf5c4a013
     image: v2ray-ws-tls-latest
     container_name: v2ray-ws-tls-container
     restart: always
     ports:
       - "12404:12404"
-    volumes:
-      - ./config/nginx.tls.conf:/etc/nginx/conf.d/nginx.tls.conf
-      - ./config/config.json:/use/local/etc/v2ray/config.json
-    environment:
-      - email=your_mail_address
-      - domain=your_domain
-      - tls_port=your_port
-      - fake_host=your_fake_host
-      - uuid=your_uuid
