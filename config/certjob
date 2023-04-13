@@ -1,0 +1,2 @@
+0 0 1 * * /usr/bin/certbot renew --force-renewal
+5 0 1 * * /usr/bin/nginx -s reload

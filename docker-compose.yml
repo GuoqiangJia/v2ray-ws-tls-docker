@@ -1,6 +1,6 @@
 version: '3'
 services:
-  v2ray-ws-tls-docker:
+  v2ray-ws-tls-service:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,10 +8,13 @@ services:
     container_name: v2ray-ws-tls-container
     restart: always
     ports:
-      - "11404:11404"
+      - "12404:12404"
     volumes:
       - ./config/nginx.tls.conf:/etc/nginx/conf.d/nginx.tls.conf
       - ./config/config.json:/use/local/etc/v2ray/config.json
     environment:
       - email=your_mail_address
       - domain=your_domain
+      - tls_port=your_port
+      - fake_host=your_fake_host
+      - uuid=your_uuid
