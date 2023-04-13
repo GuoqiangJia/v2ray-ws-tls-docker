@@ -8,10 +8,10 @@ ARG YOUR_UUID
 
 RUN apt-get update
 
-RUN apt-get install snapd
-RUN snap install core
-RUN snap refresh core
-RUN apt-get remove certbot
+RUN apt-get install snapd -y
+RUN snap install core  -y
+RUN snap refresh core  -y
+RUN apt-get remove certbot  -y
 RUN ln -s /snap/bin/certbot /usr/bin/certbot
 RUN certbot certonly --standalone --non-interactive --agree-tos -m $YOUR_EMAIL -d $YOUR_DOMAIN
 
