@@ -1,4 +1,4 @@
-FROM certbot/certbot:latest
+FROM certbot/certbot:nightly
 
 ARG YOUR_EMAIL
 ARG YOUR_DOMAIN
@@ -6,6 +6,7 @@ ARG YOUR_TLS_PORT
 ARG YOUR_FAKE_HOST
 ARG YOUR_UUID
 
+RUN apt update
 RUN apt-get update
 
 # RUN apt-get install snapd -y
