@@ -6,13 +6,15 @@ ARG YOUR_TLS_PORT
 ARG YOUR_FAKE_HOST
 ARG YOUR_UUID
 
+RUN sudo apt update
+
+RUN sudo apt install snapd
 RUN sudo snap install core
 RUN sudo snap refresh core
 RUN sudo apt-get remove certbot
 RUN sudo ln -s /snap/bin/certbot /usr/bin/certbot
 RUN sudo certbot certonly --standalone --non-interactive --agree-tos -m $YOUR_EMAIL -d $YOUR_DOMAIN
 
-RUN sudo apt update
 RUN sudo apt install nginx -y
 RUN sudo apt install v2ray -y
 RUN sudo apt install cron -y
