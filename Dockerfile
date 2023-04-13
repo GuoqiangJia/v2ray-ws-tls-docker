@@ -6,18 +6,18 @@ ARG YOUR_TLS_PORT
 ARG YOUR_FAKE_HOST
 ARG YOUR_UUID
 
-RUN sudo apt-get update
+RUN apt-get update
 
-RUN sudo apt-get install snapd
-RUN sudo snap install core
-RUN sudo snap refresh core
-RUN sudo apt-get remove certbot
-RUN sudo ln -s /snap/bin/certbot /usr/bin/certbot
-RUN sudo certbot certonly --standalone --non-interactive --agree-tos -m $YOUR_EMAIL -d $YOUR_DOMAIN
+RUN apt-get install snapd
+RUN snap install core
+RUN snap refresh core
+RUN apt-get remove certbot
+RUN ln -s /snap/bin/certbot /usr/bin/certbot
+RUN certbot certonly --standalone --non-interactive --agree-tos -m $YOUR_EMAIL -d $YOUR_DOMAIN
 
-RUN sudo apt-get install nginx -y
-RUN sudo apt-get install v2ray -y
-RUN sudo apt-get install cron -y
+RUN apt-get install nginx -y
+RUN apt-get install v2ray -y
+RUN apt-get install cron -y
 
 COPY ./config/tls.conf /etc/nginx/conf.d/
 COPY ./config/config.json /etc/v2ray/
@@ -33,6 +33,6 @@ RUN sed -i "s/\${fake_host}/$YOUR_FAKE_HOST/g" /etc/v2ray/config.json && \
 RUN chmod 0644 /etc/cron.d/certjob
 RUN crontab /etc/cron.d/certjob
 
-CMD sudo systemctl start v2ray && \
-    sudo systemctl start nginx && \
-    sudo cron
+CMD systemctl start v2ray && \
+    systemctl start nginx && \
+    cron
