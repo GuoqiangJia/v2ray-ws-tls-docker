@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM certbot/certbot:latest
 
 ARG YOUR_EMAIL
 ARG YOUR_DOMAIN
@@ -8,11 +8,11 @@ ARG YOUR_UUID
 
 RUN apt-get update
 
-RUN apt-get install snapd -y
+# RUN apt-get install snapd -y
 # RUN snap install core
 # RUN snap refresh core
-RUN apt-get remove certbot  -y
-RUN ln -s /snap/bin/certbot /usr/bin/certbot
+# RUN apt-get remove certbot  -y
+# RUN ln -s /snap/bin/certbot /usr/bin/certbot
 RUN certbot certonly --standalone --non-interactive --agree-tos -m $YOUR_EMAIL -d $YOUR_DOMAIN
 
 RUN apt-get install nginx -y
